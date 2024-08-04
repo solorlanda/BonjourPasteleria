@@ -2,12 +2,12 @@ let listaProductos = [
     { id: 1001, nombre: "Lemon Pie", categoria: "Pies", precio: 5000, stock: 7, rutaImagen: "lemon-pie.png" },
     { id: 1002, nombre: "Strawberry Pie", categoria: "Pies", precio: 6000, stock: 6, rutaImagen: "Strawberry-Pie.png" },
     { id: 2001, nombre: "Sacher Cake", categoria: "Cakes", precio: 9000, stock: 9, rutaImagen: "Sacher-Cake.png" },
-    { id: 2002, nombre: "Apple Cake", categoria: "Cakes", precio: 8000, stock: 5, rutaImagen: "Apple-Cake.png"},
-    { id: 2003, nombre: "Chees Cake", categoria: "Cakes", precio: 7500, stock: 8, rutaImagen: "Chees-Cake.png"},
-    { id: 3001, nombre: "Macarons", categoria: "Macarons", precio: 500, stock: 45, rutaImagen: "Macarons.png"},
-    { id: 2004, nombre: "Birtday Cake", categoria: "Cakes", precio: 7000, stock: 11, rutaImagen: "birthday-cake.png"},
-    { id: 2005, nombre: "Oreo Cake", categoria: "Cakes", precio: 10000, stock: 4, rutaImagen: "oreo-cake.png"},
-    { id: 1003, nombre: "Walnut Pie", categoria: "Pies", precio: 4500, stock: 10, rutaImagen: "walnut-pie.png"}
+    { id: 2002, nombre: "Apple Cake", categoria: "Cakes", precio: 8000, stock: 5, rutaImagen: "Apple-Cake.png" },
+    { id: 2003, nombre: "Chees Cake", categoria: "Cakes", precio: 7500, stock: 8, rutaImagen: "Chees-Cake.png" },
+    { id: 3001, nombre: "Macarons", categoria: "Macarons", precio: 500, stock: 45, rutaImagen: "Macarons.png" },
+    { id: 2004, nombre: "Birtday Cake", categoria: "Cakes", precio: 7000, stock: 11, rutaImagen: "birthday-cake.png" },
+    { id: 2005, nombre: "Oreo Cake", categoria: "Cakes", precio: 10000, stock: 4, rutaImagen: "oreo-cake.png" },
+    { id: 1003, nombre: "Walnut Pie", categoria: "Pies", precio: 4500, stock: 10, rutaImagen: "walnut-pie.png" }
 ]
 
 function principal(productos) {
@@ -19,7 +19,7 @@ function principal(productos) {
 
     let input = document.getElementById("buscador");
     let botonBuscar = document.getElementById("buscar");
-    
+
     botonBuscar.addEventListener("click", () => filtrarPorNombre(productos, input.value));
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
@@ -131,7 +131,7 @@ function renderizarCarrito(carrito) {
             <span>Subtotal</span>
         </div>
     `;
-    
+
     let total = 0;
     carrito.forEach(producto => {
         total += producto.subtotal;
@@ -159,7 +159,7 @@ function crearFiltrosPorCategoria(productos) {
     productos.forEach(producto => {
         if (!categorias.includes(producto.categoria)) {
             categorias.push(producto.categoria);
-            
+
             let botonFiltro = document.createElement("button");
             botonFiltro.innerText = producto.categoria;
             botonFiltro.value = producto.categoria;

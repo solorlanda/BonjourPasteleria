@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="./images/favicom.png" type="image/png">
 </head>
+
 <body>
-<header>
     <h1>BONJOUR PASTELERIA
         <img src="./images/favicom.png" alt="icon">
     </h1>
 
-</header>
+    <div class="div-carrito">
+        <button id="verCarrito">
+            <img class="img-carrito" src="./images/carrito.png" alt="carrito">
+        </button>
+    </div>
 
 
     <div id="paginaProductos">
@@ -28,18 +35,13 @@
                 <input id="buscador" placeholder="Buscar por nombre">
                 <button id="buscar">BUSCAR</button>
             </div>
-        
+
             <div id="filtros">
                 <button id="todos" value="">Todos</button>
             </div>
-            <div class="div-carrito">
 
-                <button id="verCarrito">
-                    <img class="img-carrito" src="./images/carrito.png" alt="carrito">
-                </button>
-            </div>
         </div>
-        
+
         <div id="productos">
         </div>
     </div>
@@ -50,7 +52,8 @@
         </div>
         <button id="comprar">COMPRAR</button>
     </div>
-    
+
     <script src="./script.js"></script>
 </body>
+
 </html>

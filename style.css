@@ -12,6 +12,7 @@ html {
         opacity: 0;
         transform: scale(0.8);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -23,6 +24,7 @@ html {
     from {
         transform: translateY(0);
     }
+
     to {
         transform: translateY(-5px);
     }
@@ -73,7 +75,9 @@ html {
     margin-bottom: 10px;
 }
 
-.tarjetaCarrito, .headerCarrito, .totalCarrito {
+.tarjetaCarrito,
+.headerCarrito,
+.totalCarrito {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -126,11 +130,12 @@ button {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:focus{
+button:focus {
     transform: translateY(-5px);
     background-color: rgb(12, 211, 247);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 button:hover {
     transform: translateY(-5px);
     background-color: rgb(12, 211, 247);
@@ -147,11 +152,13 @@ input {
     border: solid, 2px, black;
     border-radius: 10px;
 }
-input:focus{
+
+input:focus {
     background-color: rgb(12, 211, 247);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
-input:hover{
+
+input:hover {
     background-color: rgb(12, 211, 247);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -165,10 +172,6 @@ input:hover{
     height: 40px;
 }
 
-.div-carrito {
-    display: flex;
-    justify-content: space-between;
-}
 
 #contenedorCarrito p {
     padding: 10px;
@@ -177,7 +180,7 @@ input:hover{
     align-items: center;
 }
 
-header h1 img{
+h1 img {
     width: 50px;
     height: 50px;
 }
