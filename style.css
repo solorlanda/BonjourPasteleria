@@ -1,0 +1,183 @@
+/* Fondo con gradiente */
+html {
+    background: linear-gradient(to left, rgb(247, 199, 213) 0%, rgb(126, 221, 223) 100%);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+/* Animación para productos */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animación para botones */
+@keyframes moverBoton {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+/* Estilos de productos */
+#productos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border: 2px solid rgb(221, 61, 136);
+    margin: 2px;
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    box-shadow: 7px -8px 13px 3px rgba(82, 26, 63, 0.77);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    animation: aparecer 0.5s ease-in-out;
+}
+
+.producto img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+#contenedorCarrito {
+    border: 2px solid black;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tarjetaCarrito, .headerCarrito, .totalCarrito {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.totalCarrito {
+    font-weight: bold;
+}
+
+.tarjetaCarrito {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+}
+
+#filtrosYbotones {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    background-color: rgba(255, 147, 179, 0.8);
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    box-shadow: 7px -8px 13px 3px rgba(82, 26, 63, 0.77);
+    border-radius: 10px;
+}
+
+button {
+    background-color: rgba(255, 147, 179, 0.8);
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: solid, 2px, black;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: moverBoton 0.5s ease-in-out infinite alternate;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:focus{
+    transform: translateY(-5px);
+    background-color: rgb(12, 211, 247);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+button:hover {
+    transform: translateY(-5px);
+    background-color: rgb(12, 211, 247);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input {
+    background-color: rgba(255, 147, 179, 0.8);
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    padding: 5px;
+    border: solid, 2px, black;
+    border-radius: 10px;
+}
+input:focus{
+    background-color: rgb(12, 211, 247);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+input:hover{
+    background-color: rgb(12, 211, 247);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.oculto {
+    display: none !important;
+}
+
+.img-carrito {
+    width: 40px;
+    height: 40px;
+}
+
+.div-carrito {
+    display: flex;
+    justify-content: space-between;
+}
+
+#contenedorCarrito p {
+    padding: 10px;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+}
+
+header h1 img{
+    width: 50px;
+    height: 50px;
+}
