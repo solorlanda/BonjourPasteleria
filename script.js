@@ -7,7 +7,10 @@ let listaProductos = [
     { id: 3001, nombre: "Macarons", categoria: "Macarons", precio: 500, stock: 45, rutaImagen: "Macarons.png" },
     { id: 2004, nombre: "Birtday Cake", categoria: "Cakes", precio: 7000, stock: 11, rutaImagen: "birthday-cake.png" },
     { id: 2005, nombre: "Oreo Cake", categoria: "Cakes", precio: 10000, stock: 4, rutaImagen: "oreo-cake.png" },
-    { id: 1003, nombre: "Walnut Pie", categoria: "Pies", precio: 4500, stock: 10, rutaImagen: "walnut-pie.png" }
+    { id: 1003, nombre: "Walnut Pie", categoria: "Pies", precio: 4500, stock: 10, rutaImagen: "walnut-pie.png" },
+    { id: 4001, nombre: "Lingote Limon", categoria: "Lingotes", precio: 900, stock: 30, rutaImagen: "lingote-limon.png" },
+    { id: 4002, nombre: "Lingote Frambuesa", categoria: "Lingotes", precio: 900, stock: 40, rutaImagen: "lingote-frambuesa.png" },
+    { id: 4003, nombre: "Lingote Brownie", categoria: "Lingotes", precio: 900, stock: 25, rutaImagen: "lingote-brownie.png" },
 ]
 
 function principal(productos) {
@@ -39,7 +42,15 @@ principal(listaProductos);
 function finalizarCompra() {
     localStorage.removeItem("carrito");
     renderizarCarrito([]);
-    alert("GRACIAS POR SU COMPRA");
+    // Muestra mensaje de compra
+    let mensajeCompra = document.getElementById("mensajeCompra");
+    mensajeCompra.textContent = "GRACIAS POR SU COMPRA";
+    mensajeCompra.classList.remove("ocultoCompra");
+
+    // Oculta el mensaje
+    setTimeout(() => {
+        mensajeCompra.classList.add("ocultoCompra");
+    }, 3000);
 }
 
 function verOcultar(e) {
@@ -82,7 +93,7 @@ function crearTarjetasProductos(productos) {
             <p>$${producto.precio}</p>
             <p>Quedan ${producto.stock} unidades</p>
             <img src=./images/${producto.rutaImagen}>
-            <button id="add-${producto.id}" ${producto.stock === 0 ? 'disabled' : ''}>Añadir al carrito</button>
+            <button id="add-${producto.id}" class="${producto.stock === 0 ? 'sinStock' : ''}" ${producto.stock === 0 ? 'disabled' : ''}>Añadir al carrito</button>
         `;
         contenedorProductos.appendChild(tarjetaProducto);
 

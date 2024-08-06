@@ -128,6 +128,7 @@ button {
     transition: transform 0.3s ease;
     animation: moverBoton 0.5s ease-in-out infinite alternate;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin:2px;
 }
 
 button:focus {
@@ -183,4 +184,29 @@ input:hover {
 h1 img {
     width: 50px;
     height: 50px;
+}
+
+.div-carrito{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 5px;
+}
+
+.ocultoCompra {
+    display: none;
+}
+
+#mensajeCompra {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+button.sinStock{
+    background-color: #8d8d8d;
 }
