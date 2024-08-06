@@ -209,4 +209,5 @@ h1 img {
 
 button.sinStock{
     background-color: #8d8d8d;
+    cursor:not-allowed;
 }
