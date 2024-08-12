@@ -6,18 +6,6 @@ html {
     padding: 0;
 }
 
-/* Animación para productos */
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 
 /* Animación para botones */
 @keyframes moverBoton {
@@ -210,4 +198,18 @@ h1 img {
 button.sinStock{
     background-color: #8d8d8d;
     cursor:not-allowed;
+}
+
+.tostada-personalizada {
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    box-shadow: 7px -8px 13px 3px rgba(82, 26, 63, 0.77);
 }

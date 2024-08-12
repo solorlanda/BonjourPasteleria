@@ -40,17 +40,29 @@ function principal(productos) {
 principal(listaProductos);
 
 function finalizarCompra() {
-    localStorage.removeItem("carrito");
-    renderizarCarrito([]);
-    // Muestra mensaje de compra
-    let mensajeCompra = document.getElementById("mensajeCompra");
-    mensajeCompra.textContent = "GRACIAS POR SU COMPRA";
-    mensajeCompra.classList.remove("ocultoCompra");
+    // Obtener el carrito usando la función obtenerCarrito
+    let carrito = obtenerCarrito();
 
-    // Oculta el mensaje
-    setTimeout(() => {
-        mensajeCompra.classList.add("ocultoCompra");
-    }, 3000);
+    if (carrito.length === 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Su carrito está vacío",
+            text: "Agregue productos para comprar",
+            footer: ''
+        });
+    } else {
+        Swal.fire({
+            title: "¡Gracias por su compra!",
+            text: "Recibirá un e-mail para proseguir con el pago",
+            imageUrl: "./images/baner.jpg",
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: "Custom image"
+        });
+        // Limpiar el carrito después de la compra
+        localStorage.removeItem("carrito");
+        renderizarCarrito([]);  // Refrescar la visualización del carrito vacío
+    }
 }
 
 function verOcultar(e) {
@@ -127,10 +139,23 @@ function agregarAlCarrito(e, productos) {
         setearCarrito(carrito);
         renderizarCarrito(carrito);
         crearTarjetasProductos(productos); // Actualiza la visualización de productos
-    } else {
-        alert("No hay suficiente stock disponible");
     }
+
+    Toastify({
+        text: productoBuscado.nombre + " se agregó al carrito",
+        duration: 2000,
+        newWindow: true,
+        close: false,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #c7eff0, #fdc4ec)",
+        },
+        className: "tostada-personalizada",
+    }).showToast();
 }
+
 
 function renderizarCarrito(carrito) {
     let contenedorCarrito = document.getElementById("contenedorCarrito");
@@ -140,28 +165,115 @@ function renderizarCarrito(carrito) {
             <span>Precio</span>
             <span>Cantidad</span>
             <span>Subtotal</span>
+            <span>Acciones</span>
         </div>
     `;
 
     let total = 0;
     carrito.forEach(producto => {
         total += producto.subtotal;
-        contenedorCarrito.innerHTML += `
-            <div class="tarjetaCarrito">
-                <span>${producto.nombre}</span>
-                <span>${producto.precioUnitario}</span>
-                <span>${producto.unidades}</span>
-                <span>${producto.subtotal}</span>
-            </div>
+        let tarjetaCarrito = document.createElement("div");
+        tarjetaCarrito.className = "tarjetaCarrito";
+
+        tarjetaCarrito.innerHTML = `
+            <span>${producto.nombre}</span>
+            <span>$${producto.precioUnitario}</span>
+            <span>${producto.unidades}</span>
+            <span>$${producto.subtotal}</span>
+            <span>
+                <button class="disminuirUnidad" data-id="${producto.id}">
+                    <img src="./images/menos.png" alt="disminuir" style="width: 20px; height: 20px;">
+                </button>
+                <button class="incrementarUnidad" data-id="${producto.id}">
+                    <img src="./images/aumentar.png" alt="aumentar" style="width: 20px; height: 20px;">
+                </button>
+                <button id="be${producto.id}" class="eliminarProducto">
+                    <img src="./images/eliminar.png" alt="Eliminar" style="width: 20px; height: 20px;">
+                </button>
+            </span>
         `;
+        contenedorCarrito.appendChild(tarjetaCarrito);
     });
 
     contenedorCarrito.innerHTML += `
         <div class="totalCarrito">
             <span>Total:</span>
-            <span>${total}</span>
+            <span>$${total}</span>
         </div>
     `;
+
+    // Agregar event listeners para los botones de disminuir, incrementar y eliminar
+    document.querySelectorAll('.disminuirUnidad').forEach(boton => {
+        boton.addEventListener('click', disminuirUnidad);
+    });
+
+    document.querySelectorAll('.incrementarUnidad').forEach(boton => {
+        boton.addEventListener('click', incrementarUnidad);
+    });
+
+    document.querySelectorAll('.eliminarProducto').forEach(boton => {
+        boton.addEventListener('click', eliminarProductoDelCarrito);
+    });
+}
+
+function eliminarProductoDelCarrito(e) {
+    let id = Number(e.target.id.substring(2)); // Extraer el ID del producto
+    let carrito = obtenerCarrito();
+    let productoEliminado = carrito.find(producto => producto.id === id);
+
+    // Actualizar el stock del producto eliminado
+    listaProductos.find(producto => producto.id === id).stock += productoEliminado.unidades;
+
+    carrito = carrito.filter(producto => producto.id !== id);
+    setearCarrito(carrito);
+    renderizarCarrito(carrito);
+    crearTarjetasProductos(listaProductos); // Actualizar la lista de productos después de eliminar
+}
+
+function disminuirUnidad(e) {
+    let id = Number(e.target.dataset.id);
+    let carrito = obtenerCarrito();
+    let productoCarrito = carrito.find(producto => producto.id === id);
+
+    if (productoCarrito.unidades > 1) {
+        productoCarrito.unidades--;
+        productoCarrito.subtotal = productoCarrito.unidades * productoCarrito.precioUnitario;
+        listaProductos.find(producto => producto.id === id).stock++; // Aumentar el stock del producto en la lista original
+        setearCarrito(carrito);
+        renderizarCarrito(carrito);
+        crearTarjetasProductos(listaProductos); // Actualiza la visualización de productos
+    } else {
+        eliminarProductoDelCarrito(e); // Eliminar el producto si la cantidad llega a 0
+    }
+}
+
+function incrementarUnidad(e) {
+    let id = Number(e.target.dataset.id);
+    let carrito = obtenerCarrito();
+    let productoCarrito = carrito.find(producto => producto.id === id);
+    let productoOriginal = listaProductos.find(producto => producto.id === id);
+
+    if (productoOriginal.stock > 0) {
+        productoCarrito.unidades++;
+        productoCarrito.subtotal = productoCarrito.unidades * productoCarrito.precioUnitario;
+        productoOriginal.stock--; // Disminuir el stock del producto en la lista original
+        setearCarrito(carrito);
+        renderizarCarrito(carrito);
+        crearTarjetasProductos(listaProductos); // Actualiza la visualización de productos
+    } else {
+        Toastify({
+            text: "No hay más unidades disponibles",
+            duration: 2000,
+            newWindow: true,
+            close: false,
+            gravity: "bottom", 
+            position: "right", 
+            stopOnFocus: true, 
+            style: {
+                background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            },
+        }).showToast();
+    }
 }
 
 function crearFiltrosPorCategoria(productos) {
