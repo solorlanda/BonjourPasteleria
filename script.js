@@ -181,10 +181,10 @@ function renderizarCarrito(carrito) {
             <span>${producto.unidades}</span>
             <span>$${producto.subtotal}</span>
             <span>
-                <button class="disminuirUnidad" data-id="${producto.id}">
+                <button class="disminuirUnidad" id="re${producto.id}">
                     <img src="./images/menos.png" alt="disminuir" style="width: 20px; height: 20px;">
                 </button>
-                <button class="incrementarUnidad" data-id="${producto.id}">
+                <button class="incrementarUnidad" id="su${producto.id}">
                     <img src="./images/aumentar.png" alt="aumentar" style="width: 20px; height: 20px;">
                 </button>
                 <button id="be${producto.id}" class="eliminarProducto">
@@ -217,13 +217,28 @@ function renderizarCarrito(carrito) {
 }
 
 function eliminarProductoDelCarrito(e) {
-    let id = Number(e.target.id.substring(2)); // Extraer el ID del producto
+    let id = Number(e.target.closest('button').id.substring(2)); // Extraer el ID del producto
     let carrito = obtenerCarrito();
     let productoEliminado = carrito.find(producto => producto.id === id);
 
-    // Actualizar el stock del producto eliminado
-    listaProductos.find(producto => producto.id === id).stock += productoEliminado.unidades;
+    // Verificar que el producto eliminado exista en el carrito
+    if (!productoEliminado) {
+        console.error("Producto no encontrado en el carrito");
+        return;
+    }
 
+    let productoOriginal = listaProductos.find(producto => producto.id === id);
+
+    // Verificar que el producto original exista en la lista de productos
+    if (!productoOriginal) {
+        console.error("Producto no encontrado en la lista de productos");
+        return;
+    }
+
+    // Actualizar el stock del producto eliminado
+    productoOriginal.stock += productoEliminado.unidades;
+
+    // Eliminar el producto del carrito
     carrito = carrito.filter(producto => producto.id !== id);
     setearCarrito(carrito);
     renderizarCarrito(carrito);
@@ -231,9 +246,17 @@ function eliminarProductoDelCarrito(e) {
 }
 
 function disminuirUnidad(e) {
-    let id = Number(e.target.dataset.id);
+    // Extraer el ID del producto
+    let id = Number(e.target.closest('button').id.substring(2));
+    
     let carrito = obtenerCarrito();
     let productoCarrito = carrito.find(producto => producto.id === id);
+
+    // Verificar que el producto exista en el carrito
+    if (!productoCarrito) {
+        console.error("Producto no encontrado en el carrito");
+        return;
+    }
 
     if (productoCarrito.unidades > 1) {
         productoCarrito.unidades--;
@@ -248,10 +271,18 @@ function disminuirUnidad(e) {
 }
 
 function incrementarUnidad(e) {
-    let id = Number(e.target.dataset.id);
+    // Extraer el ID del producto
+    let id = Number(e.target.closest('button').id.substring(2));
+
     let carrito = obtenerCarrito();
     let productoCarrito = carrito.find(producto => producto.id === id);
     let productoOriginal = listaProductos.find(producto => producto.id === id);
+
+    // Verificar que el producto exista en la lista de productos originales
+    if (!productoOriginal) {
+        console.error("Producto no encontrado en la lista de productos");
+        return;
+    }
 
     if (productoOriginal.stock > 0) {
         productoCarrito.unidades++;
@@ -266,9 +297,9 @@ function incrementarUnidad(e) {
             duration: 2000,
             newWindow: true,
             close: false,
-            gravity: "bottom", 
-            position: "right", 
-            stopOnFocus: true, 
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
             style: {
                 background: "linear-gradient(to right, #ff5f6d, #ffc371)",
             },
