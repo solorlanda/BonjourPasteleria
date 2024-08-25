@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1001,
+        "nombre": "Lemon Pie",
+        "categoria": "Pies",
+        "precio": 5000,
+        "stock": 7,
+        "rutaImagen": "lemon-pie.png"
+    },
+    {
+        "id": 1002,
+        "nombre": "Strawberry Pie",
+        "categoria": "Pies",
+        "precio": 6000,
+        "stock": 6,
+        "rutaImagen": "Strawberry-Pie.png"
+    },
+    {
+        "id": 2001,
+        "nombre": "Sacher Cake",
+        "categoria": "Cakes",
+        "precio": 9000,
+        "stock": 9,
+        "rutaImagen": "Sacher-Cake.png"
+    },
+    {
+        "id": 2002,
+        "nombre": "Apple Cake",
+        "categoria": "Cakes",
+        "precio": 8000,
+        "stock": 5,
+        "rutaImagen": "Apple-Cake.png"
+    },
+    {
+        "id": 2003,
+        "nombre": "Chees Cake",
+        "categoria": "Cakes",
+        "precio": 7500,
+        "stock": 8,
+        "rutaImagen": "Chees-Cake.png"
+    },
+    {
+        "id": 3001,
+        "nombre": "Macarons",
+        "categoria": "Macarons",
+        "precio": 500,
+        "stock": 45,
+        "rutaImagen": "Macarons.png"
+    },
+    {
+        "id": 2004,
+        "nombre": "Birtday Cake",
+        "categoria": "Cakes",
+        "precio": 7000,
+        "stock": 11,
+        "rutaImagen": "birthday-cake.png"
+    },
+    {
+        "id": 2005,
+        "nombre": "Oreo Cake",
+        "categoria": "Cakes",
+        "precio": 10000,
+        "stock": 4,
+        "rutaImagen": "oreo-cake.png"
+    },
+    {
+        "id": 1003,
+        "nombre": "Walnut Pie",
+        "categoria": "Pies",
+        "precio": 4500,
+        "stock": 10,
+        "rutaImagen": "walnut-pie.png"
+    },
+    {
+        "id": 4001,
+        "nombre": "Lingote Limon",
+        "categoria": "Lingotes",
+        "precio": 900,
+        "stock": 30,
+        "rutaImagen": "lingote-limon.png"
+    },
+    {
+        "id": 4002,
+        "nombre": "Lingote Frambuesa",
+        "categoria": "Lingotes",
+        "precio": 900,
+        "stock": 40,
+        "rutaImagen": "lingote-frambuesa.png"
+    },
+    {
+        "id": 4003,
+        "nombre": "Lingote Brownie",
+        "categoria": "Lingotes",
+        "precio": 900,
+        "stock": 25,
+        "rutaImagen": "lingote-brownie.png"
+    }
+]
